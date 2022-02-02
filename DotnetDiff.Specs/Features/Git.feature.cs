@@ -80,16 +80,27 @@ namespace DotnetDiff.Specs.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Get changed files with Git")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Get changed file with Git")]
         [Xunit.TraitAttribute("FeatureTitle", "Git")]
-        [Xunit.TraitAttribute("Description", "Get changed files with Git")]
+        [Xunit.TraitAttribute("Description", "Get changed file with Git")]
         [Xunit.TraitAttribute("Category", "mytag")]
-        public virtual void GetChangedFilesWithGit()
+        [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"8e3dac791cbb9eab6b0cf438f6506ef209c47b0f\"", "\"DotnetDiff.TestProject1/Class1.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"37ac3eaf035bb66a95fff66f104268a1b2536605\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"63035a6538821277cab1fb5143370e7e8430983d\"", "\"35df4f2fca35b5ffd9a7c677b8448fa3cd52e6c5\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
+        public virtual void GetChangedFileWithGit(string firstCommitSha, string secondCommitSha, string filePath, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "mytag"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get changed files with Git", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("firstCommitSha", firstCommitSha);
+            argumentsOfScenario.Add("secondCommitSha", secondCommitSha);
+            argumentsOfScenario.Add("filePath", filePath);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get changed file with Git", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,16 +122,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("the first commit is \"56964225a0b7229e3ae836784cc5fdd628596865\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("the first commit is {0}", firstCommitSha), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And("the second commit is \"8e3dac791cbb9eab6b0cf438f6506ef209c47b0f\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the second commit is {0}", secondCommitSha), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
- testRunner.When("Git returns changed files", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Git returns changed file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("the result should be \"DotnetDiff.TestProject1/Class1.cs\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the file should be {0}", filePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

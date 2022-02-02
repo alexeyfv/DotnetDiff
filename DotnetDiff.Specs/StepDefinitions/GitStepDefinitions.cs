@@ -30,13 +30,13 @@ namespace DotnetDiff.Specs.StepDefinitions
         [Given(@"the second commit is ""([^""]*)""")]
         public void GivenTheSecondCommitIs(string p0) => lastCommit = p0;
 
-        [When(@"Git returns changed files")]
+        [When(@"Git returns changed file")]
         public void WhenGitReturnsChangedFiles()
         {
             sourceCodeFiles = git.GetChangedFiles(firstCommit, lastCommit);
         }
 
-        [Then(@"the result should be ""([^""]*)""")]
+        [Then(@"the file should be ""([^""]*)""")]
         public void ThenTheResultShouldBe(string p0)
         {
             var list = new List<SourceCodeFile>() { new SourceCodeFile(p0) };
