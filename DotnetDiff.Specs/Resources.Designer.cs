@@ -61,7 +61,7 @@ namespace DotnetDiff.Specs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\..\..\..\..\DotnetDiff\DotnetDiff.TestData.
+        ///   Looks up a localized string similar to ..\..\..\..\.
         /// </summary>
         internal static string GitRepository {
             get {

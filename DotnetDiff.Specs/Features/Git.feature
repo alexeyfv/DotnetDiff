@@ -2,7 +2,7 @@
 
 @mytag
 Scenario: Get changed files with Git
-	Given the first commit is "aebec361a1e2bdf6930020dbd0469c1307c952d6"
-	And the second commit is "477497b4538668a81b58b5dd599d43f5e5af34e3"
-	When the version control system gets changed files
-	Then the result should be "TestProject3/Class1.cs"
+	Given the first commit is "56964225a0b7229e3ae836784cc5fdd628596865"
+	And the second commit is "8e3dac791cbb9eab6b0cf438f6506ef209c47b0f"
+	When Git returns changed files
+	Then the result should be "DotnetDiff.TestProject1/Class1.cs"
