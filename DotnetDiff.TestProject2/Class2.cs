@@ -8,5 +8,6 @@ namespace DotnetDiff.TestProject2
 {
     internal class Class2
     {
+        public int MyProperty1 { get; set; }
     }
 }
