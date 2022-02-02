@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotnetDiff.TestProject2
 {
-    internal class Class2
+    internal class ClassTwo
     {
         public int MyProperty1 { get; set; }
     }
