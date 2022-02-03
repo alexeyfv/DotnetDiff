@@ -1,9 +1,5 @@
-using DotnetDiff.Models;
 using DotnetDiff.Services.VersionControlSystems;
 using LibGit2Sharp;
-using System;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Infrastructure;
 
 namespace DotnetDiff.Specs.StepDefinitions
 {
@@ -37,10 +33,10 @@ namespace DotnetDiff.Specs.StepDefinitions
         }
 
         [Then(@"the file should be ""([^""]*)""")]
-        public void ThenTheResultShouldBe(string p0)
+        public void ThenTheResultShouldBe(string pathes)
         {
-            var list = new List<SourceCodeFile>() { new SourceCodeFile(p0) };
-            sourceCodeFiles.Should().Contain(list).And.HaveSameCount(list);
+            var files = pathes.Parse().Select(s => new SourceCodeFile(s));
+            sourceCodeFiles.Should().Contain(files).And.HaveSameCount(files);
         }
     }
 }

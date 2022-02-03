@@ -85,9 +85,19 @@ namespace DotnetDiff.Specs.Features
         [Xunit.TraitAttribute("Description", "Get changed file with Git")]
         [Xunit.TraitAttribute("Category", "mytag")]
         [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"8e3dac791cbb9eab6b0cf438f6506ef209c47b0f\"", "\"DotnetDiff.TestProject1/Class1.cs\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"37ac3eaf035bb66a95fff66f104268a1b2536605\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"63035a6538821277cab1fb5143370e7e8430983d\"", "\"35df4f2fca35b5ffd9a7c677b8448fa3cd52e6c5\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
-        public virtual void GetChangedFileWithGit(string firstCommitSha, string secondCommitSha, string filePath, string[] exampleTags)
+        [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"63035a6538821277cab1fb5143370e7e8430983d\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"35df4f2fca35b5ffd9a7c677b8448fa3cd52e6c5\"", "\"DotnetDiff.TestProject1/Class3.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"188ee75c77d4124ca3f2054eab5eecc5d8dd06a3\"", "\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"dbd11c8c8b055db8c2b2251aab7ccf60fdf9c9a3\"", "\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs, DotnetDiff" +
+            ".TestProject2/Class1.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"d913d54f4af58d4fe98f7a03af188b7190421a99\"", "\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs, DotnetDiff" +
+            ".TestProject2/Class1.cs, DotnetDiff.TestProject2/Class2.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"d913d54f4af58d4fe98f7a03af188b7190421a99\"", "\"5aeb8bb21a2ccb16800332196a63642becf54ea7\"", "\"DotnetDiff.TestProject2/ClassOne.cs, DotnetDiff.TestProject2/ClassTwo.cs\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"d913d54f4af58d4fe98f7a03af188b7190421a99\"", "\"744da2da6691a15cce7c4d5fb9f534aecf58960c\"", "\"DotnetDiff.TestProject2/ClassOne.cs, DotnetDiff.TestProject3/Class1.cs, DotnetDi" +
+            "ff.TestProject3/Class2.cs, DotnetDiff.TestProject3/Class3.cs, DotnetDiff.TestPro" +
+            "ject3/Class4.cs\"", new string[0])]
+        public virtual void GetChangedFileWithGit(string firstCommitSha, string secondCommitSha, string pathes, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -99,7 +109,7 @@ namespace DotnetDiff.Specs.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("firstCommitSha", firstCommitSha);
             argumentsOfScenario.Add("secondCommitSha", secondCommitSha);
-            argumentsOfScenario.Add("filePath", filePath);
+            argumentsOfScenario.Add("pathes", pathes);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get changed file with Git", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
@@ -131,7 +141,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Git returns changed file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then(string.Format("the file should be {0}", filePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the file should be {0}", pathes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
