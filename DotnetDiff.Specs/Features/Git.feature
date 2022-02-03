@@ -1,5 +1,7 @@
 ﻿Feature: Git
 
+The feature should return changed files between commits
+
 @mytag
 Scenario Outline: Get changed file with Git
 	Given the first commit is <firstCommitSha>
