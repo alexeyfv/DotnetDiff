@@ -24,7 +24,7 @@ namespace DotnetDiff.Services.VersionControlSystems
                 return list;
             }
 
-            var treeChanges = repository.Diff.Compare<TreeChanges>(lastCommit.Tree, firstCommit.Tree);
+            var treeChanges = repository.Diff.Compare<TreeChanges>(firstCommit.Tree, lastCommit.Tree);
 
             list.AddRange(treeChanges.Added.Select(e => new SourceCodeFile(e.Path)));
             list.AddRange(treeChanges.Copied.Select(e => new SourceCodeFile(e.Path)));
