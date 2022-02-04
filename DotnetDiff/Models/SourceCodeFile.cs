@@ -1,7 +1,13 @@
 ﻿namespace DotnetDiff.Models
 {
+    /// <summary>
+    /// A base class for source code file
+    /// </summary>
     public class SourceCodeFile
     {
+        /// <summary>
+        /// A path to the source code file
+        /// </summary>
         public string Path { get; }
 
         public SourceCodeFile(string path)
@@ -23,7 +29,7 @@
                 return true;
             }
 
-            return string.Equals(this.Path, obj.Path, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(Path, obj.Path, StringComparison.OrdinalIgnoreCase);
         }
 
         public override int GetHashCode() => Path.GetHashCode();
