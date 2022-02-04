@@ -4,7 +4,7 @@ using DotnetDiff.Services.ProjectSearchers;
 
 namespace DotnetDiff.Specs.StepDefinitions
 {
-    [Scope(Tag = "ProjectSearhcer")]
+    [Scope(Tag = "ProjectSearcher")]
     [Binding]
     public class DotNetCoreProjectSearcherStepDefinitions
     {
@@ -12,12 +12,7 @@ namespace DotnetDiff.Specs.StepDefinitions
 
         private IEnumerable<Project> actualProjects = Enumerable.Empty<Project>();
 
-        private readonly DotNetCoreProjectSearcher dotNetCoreProjectSearcher;
-
-        public DotNetCoreProjectSearcherStepDefinitions()
-        {
-            dotNetCoreProjectSearcher = new DotNetCoreProjectSearcher(Resources.GitRepository);
-        }
+        private readonly DotNetCoreProjectSearcher dotNetCoreProjectSearcher = new(Resources.GitRepository);
 
         [Given(@"the ""([^""]*)""")]
         public void GivenThe(string sourceFiles)
