@@ -1,4 +1,5 @@
 ﻿using DotnetDiff.Models;
+using DotnetDiff.Models.SourceCodeFiles;
 
 namespace DotnetDiff.Services.VersionControlSystems
 {

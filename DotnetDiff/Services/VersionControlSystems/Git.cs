@@ -1,4 +1,5 @@
 ﻿using DotnetDiff.Models;
+using DotnetDiff.Models.SourceCodeFiles;
 using LibGit2Sharp;
 
 namespace DotnetDiff.Services.VersionControlSystems

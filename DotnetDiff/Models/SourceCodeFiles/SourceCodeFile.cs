@@ -1,4 +1,4 @@
-﻿namespace DotnetDiff.Models
+﻿namespace DotnetDiff.Models.SourceCodeFiles
 {
     /// <summary>
     /// A base class for source code file

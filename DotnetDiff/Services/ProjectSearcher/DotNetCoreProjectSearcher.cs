@@ -1,4 +1,4 @@
-﻿using DotnetDiff.Models;
+﻿using DotnetDiff.Models.Projects;
 
 namespace DotnetDiff.Services.ProjectSearchers
 {

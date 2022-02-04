@@ -1,4 +1,4 @@
-﻿namespace DotnetDiff.Models
+﻿namespace DotnetDiff.Models.Projects
 {
     /// <summary>
     /// A base class for project files

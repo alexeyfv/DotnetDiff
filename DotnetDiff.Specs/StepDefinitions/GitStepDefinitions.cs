@@ -1,3 +1,4 @@
+using DotnetDiff.Models.SourceCodeFiles;
 using DotnetDiff.Services.VersionControlSystems;
 using LibGit2Sharp;
 

@@ -1,4 +1,4 @@
-﻿using DotnetDiff.Models;
+﻿using DotnetDiff.Models.Projects;
 using DotnetDiff.Services.ProjectBuilders;
 using DotnetDiff.Services.ProjectSearchers;
 using DotnetDiff.Services.VersionControlSystems;

@@ -1,7 +1,6 @@
+using DotnetDiff.Models.Projects;
+using DotnetDiff.Models.SourceCodeFiles;
 using DotnetDiff.Services.ProjectSearchers;
-using System;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Infrastructure;
 
 namespace DotnetDiff.Specs.StepDefinitions
 {
