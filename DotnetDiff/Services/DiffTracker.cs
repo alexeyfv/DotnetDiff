@@ -11,12 +11,12 @@ namespace DotnetDiff.Services
 
         private readonly IProjectsSearcher<T> projectSearcher;
 
-        private readonly IProjectsBuilder projectsBuilder;
+        private readonly IProjectsBuilder<T> projectsBuilder;
 
         public DiffTracker(
             IVersionControlSystem versionControlSystem,
             IProjectsSearcher<T> searcher,
-            IProjectsBuilder projectsBuilder)
+            IProjectsBuilder<T> projectsBuilder)
         {
             this.versionControlSystem = versionControlSystem ?? throw new ArgumentNullException(nameof(versionControlSystem));
             this.projectSearcher = searcher ?? throw new ArgumentNullException(nameof(searcher));

@@ -2,8 +2,8 @@
 
 namespace DotnetDiff.Services.ProjectBuilders
 {
-    public interface IProjectsBuilder
+    public interface IProjectsBuilder<T> where T : Project
     {
-        void Build(IEnumerable<Project> projects);
+        bool Build(IEnumerable<Project> projects);
     }
 }
