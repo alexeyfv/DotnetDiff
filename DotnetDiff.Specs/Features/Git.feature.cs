@@ -83,7 +83,7 @@ namespace DotnetDiff.Specs.Features
         [Xunit.SkippableTheoryAttribute(DisplayName="Get changed file with Git")]
         [Xunit.TraitAttribute("FeatureTitle", "Git")]
         [Xunit.TraitAttribute("Description", "Get changed file with Git")]
-        [Xunit.TraitAttribute("Category", "mytag")]
+        [Xunit.TraitAttribute("Category", "Git")]
         [Xunit.InlineDataAttribute("\"56964225a0b7229e3ae836784cc5fdd628596865\"", "\"8e3dac791cbb9eab6b0cf438f6506ef209c47b0f\"", "\"DotnetDiff.TestProject1/Class1.cs\"", new string[0])]
         [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"63035a6538821277cab1fb5143370e7e8430983d\"", "\"DotnetDiff.TestProject1/Class2.cs\"", new string[0])]
         [Xunit.InlineDataAttribute("\"957c843d48abd7bc7e013e9a5a8b803d7e76ddda\"", "\"35df4f2fca35b5ffd9a7c677b8448fa3cd52e6c5\"", "\"DotnetDiff.TestProject1/Class3.cs\"", new string[0])]
@@ -100,7 +100,7 @@ namespace DotnetDiff.Specs.Features
         public virtual void GetChangedFileWithGit(string firstCommitSha, string secondCommitSha, string pathes, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "Git"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

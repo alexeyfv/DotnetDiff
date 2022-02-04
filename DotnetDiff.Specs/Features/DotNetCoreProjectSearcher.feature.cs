@@ -83,7 +83,7 @@ namespace DotnetDiff.Specs.Features
         [Xunit.SkippableTheoryAttribute(DisplayName="Find dot NET Core project file")]
         [Xunit.TraitAttribute("FeatureTitle", "DotNetCoreProjectSearcher")]
         [Xunit.TraitAttribute("Description", "Find dot NET Core project file")]
-        [Xunit.TraitAttribute("Category", "tag1")]
+        [Xunit.TraitAttribute("Category", "ProjectSearcher")]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class2.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class3.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
@@ -103,7 +103,7 @@ namespace DotnetDiff.Specs.Features
         public virtual void FindDotNETCoreProjectFile(string sourceFiles, string projects, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "tag1"};
+                    "ProjectSearcher"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

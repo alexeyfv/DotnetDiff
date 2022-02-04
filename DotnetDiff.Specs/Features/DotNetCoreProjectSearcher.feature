@@ -2,7 +2,7 @@
 
 The feature should find .NET Core project file (if exists) for provided files 
 
-@tag1
+@ProjectSearcher
 Scenario Outline: Find dot NET Core project file
 	Given the <sourceFiles>
 	When searcher returns project

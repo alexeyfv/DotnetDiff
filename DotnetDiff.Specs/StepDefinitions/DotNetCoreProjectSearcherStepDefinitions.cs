@@ -4,6 +4,7 @@ using DotnetDiff.Services.ProjectSearchers;
 
 namespace DotnetDiff.Specs.StepDefinitions
 {
+    [Scope(Tag = "ProjectSearhcer")]
     [Binding]
     public class DotNetCoreProjectSearcherStepDefinitions
     {

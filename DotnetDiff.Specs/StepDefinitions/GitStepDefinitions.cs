@@ -4,6 +4,7 @@ using LibGit2Sharp;
 
 namespace DotnetDiff.Specs.StepDefinitions
 {
+    [Scope(Tag = "Git")]
     [Binding]
     public class GitStepDefinitions
     {

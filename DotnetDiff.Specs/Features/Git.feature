@@ -2,7 +2,7 @@
 
 The feature should return changed files between commits
 
-@mytag
+@Git
 Scenario Outline: Get changed file with Git
 	Given the first commit is <firstCommitSha>
 	And the second commit is <secondCommitSha>
