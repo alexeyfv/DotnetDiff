@@ -61,6 +61,24 @@ namespace DotnetDiff.Specs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dotnet.
+        /// </summary>
+        internal static string DotNetCoreBuilder {
+            get {
+                return ResourceManager.GetString("DotNetCoreBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to build.
+        /// </summary>
+        internal static string DotNetCoreBuilderArguments {
+            get {
+                return ResourceManager.GetString("DotNetCoreBuilderArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ..\..\..\..\.
         /// </summary>
         internal static string GitRepository {

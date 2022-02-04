@@ -6,14 +6,15 @@ The feature should build provided .NET Core project files
 Scenario Outline: Build dot NET Core project file
 	Given the <projectFiles>
 	When builder builds projects
-	Then result should be true
+	Then result should be <result>
 
 Examples: 
-| projectFiles |
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject1.csproj" |
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject2.csproj" |
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject3.csproj" |
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\DotnetDiff.TestProject2.csproj"	|
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject2\DotnetDiff.TestProject3.csproj"	|
-| "DotnetDiff.TestProject1\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\DotnetDiff.TestProject3.csproj"	|
-| "DotnetDiff.TestProject2\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject3\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\DotnetDiff.TestProject3.cspro"	|
+| projectFiles                                                                                                                                                                | result |
+| "DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj"                                                                                                                   | true   |
+| "DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj"                                                                                                                   | true   |
+| "DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj"                                                                                                                   | true   |
+| "DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj"                                                          | true   |
+| "DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj"                                                          | true   |
+| "DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj"                                                          | true   |
+| "DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj" | true   |
+| "DotnetDiff.TestProject2\\DotnetDiff.TestProject123.csproj"                                                                                                                 | false  |

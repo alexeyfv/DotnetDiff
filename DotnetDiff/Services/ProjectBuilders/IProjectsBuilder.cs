@@ -4,6 +4,6 @@ namespace DotnetDiff.Services.ProjectBuilders
 {
     public interface IProjectsBuilder<T> where T : Project
     {
-        bool Build(IEnumerable<Project> projects);
+        Task<bool> BuildAsync(IEnumerable<Project> projects);
     }
 }

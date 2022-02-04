@@ -4,13 +4,10 @@ namespace DotnetDiff.Services.ProjectBuilders
 {
     public class DotNetCoreProjectBuilder : ProjectBuilder<DotNetCoreProject>
     {
-        public DotNetCoreProjectBuilder()
+        public DotNetCoreProjectBuilder(string builderPath, string buildingArguments) : base(builderPath, buildingArguments)
         {
-            BuilderPath = "";
-            BuildingOptions = "";
         }
 
-        public override string BuildingOptions { get; protected set; }
-        public override string BuilderPath { get; protected set; }
+        public override string GetBuildingArguments(string buildingCommand, string projectFilePath) => $"{buildingCommand} {projectFilePath}";
     }
 }

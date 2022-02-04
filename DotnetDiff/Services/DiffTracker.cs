@@ -27,7 +27,6 @@ namespace DotnetDiff.Services
         {
             var changedFiles = versionControlSystem.GetChangedFiles(string.Empty, string.Empty);
             var changedProjects = projectSearcher.GetChangedProjects(changedFiles);
-            projectsBuilder.Build(changedProjects);
         }
     }
 }

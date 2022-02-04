@@ -84,19 +84,20 @@ namespace DotnetDiff.Specs.Features
         [Xunit.TraitAttribute("FeatureTitle", "DotNetCoreProjectBuilder")]
         [Xunit.TraitAttribute("Description", "Build dot NET Core project file")]
         [Xunit.TraitAttribute("Category", "ProjectBuilder")]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject2.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject3.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
-            "DotnetDiff.TestProject2.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject2\\" +
-            "DotnetDiff.TestProject3.csproj\"", new string[0])]
+            "DotnetDiff.TestProject2.csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\" +
+            "DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject3\\" +
+            "DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
-            "DotnetDiff.TestProject3.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject3\\" +
             "DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\DotnetDiff.TestProject3." +
-            "cspro\"", new string[0])]
-        public virtual void BuildDotNETCoreProjectFile(string projectFiles, string[] exampleTags)
+            "csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject123.csproj\"", "false", new string[0])]
+        public virtual void BuildDotNETCoreProjectFile(string projectFiles, string result, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ProjectBuilder"};
@@ -107,6 +108,7 @@ namespace DotnetDiff.Specs.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("projectFiles", projectFiles);
+            argumentsOfScenario.Add("result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Build dot NET Core project file", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -135,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("builder builds projects", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("result should be true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("result should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
