@@ -84,21 +84,21 @@ namespace DotnetDiff.Specs.Features
         [Xunit.TraitAttribute("FeatureTitle", "DotNetCoreProjectSearcher")]
         [Xunit.TraitAttribute("Description", "Find dot NET Core project file")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class1.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class2.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class3.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class2.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs, DotnetDiff" +
-            ".TestProject2/Class1.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2/" +
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class2.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class3.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs, DotnetDiff.TestProject1\\Class2.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs, DotnetDiff.TestProject1\\Class3.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs, DotnetDiff.TestProject1\\Class3.cs, DotnetDiff" +
+            ".TestProject2\\Class1.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
             "DotnetDiff.TestProject2.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1/Class1.cs, DotnetDiff.TestProject1/Class3.cs, DotnetDiff" +
-            ".TestProject2/Class1.cs, DotnetDiff.TestProject2/Class2.cs\"", "\"DotnetDiff.TestProject1/DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2/" +
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\Class1.cs, DotnetDiff.TestProject1\\Class3.cs, DotnetDiff" +
+            ".TestProject2\\Class1.cs, DotnetDiff.TestProject2\\Class2.cs\"", "\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
             "DotnetDiff.TestProject2.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2/ClassOne.cs, DotnetDiff.TestProject2/ClassTwo.cs\"", "\"DotnetDiff.TestProject2/DotnetDiff.TestProject2.csproj\"", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2/ClassOne.cs, DotnetDiff.TestProject3/Class1.cs, DotnetDi" +
-            "ff.TestProject3/Class2.cs, DotnetDiff.TestProject3/Class3.cs, DotnetDiff.TestPro" +
-            "ject3/Class4.cs\"", "\"DotnetDiff.TestProject2/DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3/" +
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\ClassOne.cs, DotnetDiff.TestProject2\\ClassTwo.cs\"", "\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj\"", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\ClassOne.cs, DotnetDiff.TestProject3\\Class1.cs, DotnetDi" +
+            "ff.TestProject3\\Class2.cs, DotnetDiff.TestProject3\\Class3.cs, DotnetDiff.TestPro" +
+            "ject3\\Class4.cs\"", "\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\" +
             "DotnetDiff.TestProject3.csproj\"", new string[0])]
         public virtual void FindDotNETCoreProjectFile(string sourceFiles, string projects, string[] exampleTags)
         {
@@ -134,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the <files>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("the {0}", sourceFiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When("searcher returns project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

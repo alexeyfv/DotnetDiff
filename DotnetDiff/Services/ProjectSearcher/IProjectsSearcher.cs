@@ -2,8 +2,8 @@
 
 namespace DotnetDiff.Services.ProjectSearchers
 {
-    public interface IProjectsSearcher
+    public interface IProjectsSearcher<T> where T : Project
     {
-        IEnumerable<Project> GetChangedProjects(IEnumerable<SourceCodeFile> sourceCodeFiles);
+        IEnumerable<T> GetChangedProjects(IEnumerable<SourceCodeFile> sourceCodeFiles);
     }
 }

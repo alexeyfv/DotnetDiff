@@ -1,20 +1,22 @@
-﻿using DotnetDiff.Services.ProjectBuilders;
+﻿using DotnetDiff.Models;
+using DotnetDiff.Services.ProjectBuilders;
 using DotnetDiff.Services.ProjectSearchers;
 using DotnetDiff.Services.VersionControlSystems;
 
 namespace DotnetDiff.Services
 {
-    class DiffTracker : IDiffTracker
+    class DiffTracker<T>: IDiffTracker where T : Project
     {
         private readonly IVersionControlSystem versionControlSystem;
-        private readonly IProjectsSearcher projectSearcher;
+
+        private readonly IProjectsSearcher<T> projectSearcher;
+
         private readonly IProjectsBuilder projectsBuilder;
 
         public DiffTracker(
             IVersionControlSystem versionControlSystem,
-            IProjectsSearcher searcher,
-            IProjectsBuilder projectsBuilder
-            )
+            IProjectsSearcher<T> searcher,
+            IProjectsBuilder projectsBuilder)
         {
             this.versionControlSystem = versionControlSystem ?? throw new ArgumentNullException(nameof(versionControlSystem));
             this.projectSearcher = searcher ?? throw new ArgumentNullException(nameof(searcher));
