@@ -32,7 +32,7 @@ namespace DotnetDiff.Specs.StepDefinitions
 
             foreach (var project in this.projects)
             {
-                specFlowOutputHelper.WriteLine(project.FileInfo.FullName);
+                specFlowOutputHelper.WriteLine(project.FileInfo?.FullName);
             }
         }
 

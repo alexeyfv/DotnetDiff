@@ -5,28 +5,29 @@ using DotnetDiff.Services.VersionControlSystems;
 
 namespace DotnetDiff.Services
 {
-    public abstract class DiffTracker<T> where T : Project
+    public abstract class DiffTracker<T> where T : Project, new()
     {
-        private readonly IVersionControlSystem versionControlSystem;
+        private readonly VersionControlSystem versionControlSystem;
 
-        private readonly IProjectsSearcher<T> projectSearcher;
+        private readonly ProjectSearcher<T> projectSearcher;
 
-        private readonly IProjectsBuilder<T> projectsBuilder;
+        private readonly ProjectBuilder<T> projectsBuilder;
 
         public DiffTracker(
-            IVersionControlSystem versionControlSystem,
-            IProjectsSearcher<T> searcher,
-            IProjectsBuilder<T> projectsBuilder)
+            VersionControlSystem versionControlSystem,
+            ProjectSearcher<T> searcher,
+            ProjectBuilder<T> projectsBuilder)
         {
             this.versionControlSystem = versionControlSystem ?? throw new ArgumentNullException(nameof(versionControlSystem));
             this.projectSearcher = searcher ?? throw new ArgumentNullException(nameof(searcher));
             this.projectsBuilder = projectsBuilder ?? throw new ArgumentNullException(nameof(projectsBuilder));
         }
 
-        public virtual void Rebuild()
+        public virtual async void Rebuild()
         {
             var changedFiles = versionControlSystem.GetChangedFiles(string.Empty, string.Empty);
             var changedProjects = projectSearcher.GetChangedProjects(changedFiles);
+            await projectsBuilder.BuildAsync(changedProjects);
         }
     }
 }

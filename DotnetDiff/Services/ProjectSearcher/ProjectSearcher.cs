@@ -7,7 +7,7 @@ namespace DotnetDiff.Services.ProjectSearchers
     /// A base class that implements project searching
     /// </summary>
     /// <typeparam name="T">Project type</typeparam>
-    public abstract class ProjectsSearcher<T> where T : Project, new()
+    public abstract class ProjectSearcher<T> where T : Project, new()
     {
         /// <summary>
         /// Project file extension
@@ -24,12 +24,12 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// </summary>
         /// <param name="repositoryDirectory">Repository directory</param>
         /// <exception cref="ArgumentException"></exception>
-        public ProjectsSearcher(string repositoryDirectory)
+        public ProjectSearcher(string repositoryDirectory)
         {
             if (string.IsNullOrEmpty(repositoryDirectory))
             {
                 throw new ArgumentException($"'{nameof(repositoryDirectory)}' cannot be null or empty.", nameof(repositoryDirectory));
-            }            
+            }
 
             RepositoryDirectory = new DirectoryInfo(repositoryDirectory);
         }

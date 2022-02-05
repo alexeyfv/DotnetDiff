@@ -5,7 +5,7 @@ namespace DotnetDiff.Services.ProjectSearchers
     /// <summary>
     /// .NET Core project searcher
     /// </summary>
-    public class DotNetCoreProjectSearcher : ProjectsSearcher<DotNetCoreProject>
+    public class DotNetCoreProjectSearcher : ProjectSearcher<DotNetCoreProject>
     {
         /// <summary>
         /// <inheritdoc/>
