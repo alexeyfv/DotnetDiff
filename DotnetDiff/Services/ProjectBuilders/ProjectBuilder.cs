@@ -53,15 +53,17 @@ namespace DotnetDiff.Services.ProjectBuilders
         /// </summary>
         /// <param name="buildingCommand">Building command</param>
         /// <param name="projectFilePath">Project file path</param>
+        /// <param name="outputFolder">Output folder</param>
         /// <returns>Building arguments string</returns>
-        public abstract string GetBuildingArguments(string buildingCommand, string projectFilePath);
+        public abstract string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder);
 
         /// <summary>
         /// Starts async building
         /// </summary>
         /// <param name="projects">Collection of projects to build</param>
+        /// <param name="outputFolder">Output folder</param>
         /// <returns>A task that returns true, if all the projects were builded successfully</returns>
-        public virtual async Task<bool> BuildAsync(IEnumerable<Project> projects)
+        public virtual async Task<bool> BuildAsync(IEnumerable<Project> projects, string outputFolder)
         {
             buildingIsSuccess = true;
 
@@ -77,7 +79,7 @@ namespace DotnetDiff.Services.ProjectBuilders
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = BuilderPath,
-                        Arguments = GetBuildingArguments(BuildingCommand, project.FileInfo.FullName),
+                        Arguments = GetBuildingArguments(BuildingCommand, project.FileInfo.FullName, outputFolder),
                         CreateNoWindow = true,
                         UseShellExecute = false,
                         RedirectStandardOutput = true

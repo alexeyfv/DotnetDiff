@@ -11,11 +11,12 @@ namespace DotnetDiff.Services.ProjectBuilders
         /// <inheritdoc/>
         /// </summary>
         /// <param name="builderPath">A path to the builder</param>
-        /// <param name="buildingCommand">The build command that used by the builder</param>
+        /// <param name="buildingArguments">The build command that used by the builder</param>
         public DotNetCoreProjectBuilder(string builderPath, string buildingArguments) : base(builderPath, buildingArguments)
         {
         }
 
-        public override string GetBuildingArguments(string buildingCommand, string projectFilePath) => $"{buildingCommand} {projectFilePath}";
+        public override string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder) => 
+            $"{buildingCommand} {projectFilePath} --output {outputFolder}";
     }
 }

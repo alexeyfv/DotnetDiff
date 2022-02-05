@@ -13,8 +13,14 @@ namespace DotnetDiff.Specs.StepDefinitions
         private IEnumerable<DotNetCoreProject> projects = Enumerable.Empty<DotNetCoreProject>();
 
         private readonly DotNetCoreProjectBuilder dotNetCoreProjectBuilder = new(Resources.DotNetCoreBuilder, Resources.DotNetCoreBuilderArguments);
+
         private readonly ISpecFlowOutputHelper specFlowOutputHelper;
-        private bool result = false;
+
+        private bool buildIsSuccessfull = false;
+
+        private bool assembliesAreExists = true;
+
+        private string? outputFolder;
 
         public DotNetCoreProjectBuilderStepDefinitions(ISpecFlowOutputHelper specFlowOutputHelper)
         {
@@ -23,36 +29,66 @@ namespace DotnetDiff.Specs.StepDefinitions
         }
 
         [Given(@"the ""([^""]*)""")]
-        public void GivenThe(string projects)
+        public void GivenThe(string projectFiles)
         {
-            this.projects = projects.Parse().Select(s => new DotNetCoreProject()
+            projects = projectFiles.Parse().Select(s => new DotNetCoreProject()
             {
                 FileInfo = new FileInfo(@$"{Resources.GitRepository}{s}")
             });
-
-            foreach (var project in this.projects)
-            {
-                specFlowOutputHelper.WriteLine(project.FileInfo?.FullName);
-            }
         }
 
-        [When(@"builder builds projects")]
-        public void WhenBuilderBuildsProjects()
+        [When(@"builder builds projects to ""([^""]*)""")]
+        public void WhenBuilderBuildsProjectsTo(string outputFolder)
         {
-            result = dotNetCoreProjectBuilder.BuildAsync(projects).Result;
+            this.outputFolder = Path.GetFullPath(outputFolder);
+            buildIsSuccessfull = dotNetCoreProjectBuilder.BuildAsync(projects, this.outputFolder).Result;
         }
 
         [Then(@"result should be true")]
         public void ThenResultShouldBeTrue()
         {
-            result.Should().BeTrue();
+            buildIsSuccessfull.Should().BeTrue();
         }
 
         [Then(@"result should be false")]
         public void ThenResultShouldBeFalse()
         {
-            result.Should().BeFalse();
+            buildIsSuccessfull.Should().BeFalse();
         }
 
+        [Then(@"output files are exist shoukd be true")]
+        public void ThenOutputFilesAreExistShoukdBeTrue()
+        {
+            CheckAssemblies();
+            assembliesAreExists.Should().BeTrue();
+        }
+
+        [Then(@"output files are exist shoukd be false")]
+        public void ThenOutputFilesAreExistShoukdBeFalse()
+        {
+            CheckAssemblies();
+            assembliesAreExists.Should().BeFalse();
+        }
+
+        private void CheckAssemblies()
+        {
+            foreach (var project in projects)
+            {
+                if (project is null || project.FileInfo is null || string.IsNullOrEmpty(outputFolder))
+                {
+                    continue;
+                }
+
+                var assemblyName = Path.GetFileNameWithoutExtension(project.FileInfo.FullName);
+                var assemblyPath = Path.Combine(outputFolder, assemblyName);
+
+                assembliesAreExists = assembliesAreExists && (File.Exists($"{assemblyPath}.dll") || File.Exists($"{assemblyPath}.exe"));
+
+                if (!assembliesAreExists)
+                {
+                    break;
+                }
+            }
+        }
     }
 }

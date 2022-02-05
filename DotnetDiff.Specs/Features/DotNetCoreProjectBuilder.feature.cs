@@ -84,20 +84,20 @@ namespace DotnetDiff.Specs.Features
         [Xunit.TraitAttribute("FeatureTitle", "DotNetCoreProjectBuilder")]
         [Xunit.TraitAttribute("Description", "Build dot NET Core project file")]
         [Xunit.TraitAttribute("Category", "ProjectBuilder")]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", "true", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj\"", "true", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj\"", "\"TestFolder\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj\"", "\"TestFolder\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject3\\DotnetDiff.TestProject3.csproj\"", "\"TestFolder\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
-            "DotnetDiff.TestProject2.csproj\"", "true", new string[0])]
+            "DotnetDiff.TestProject2.csproj\"", "\"TestFolder\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\" +
-            "DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
+            "DotnetDiff.TestProject3.csproj\"", "\"TestFolder\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject3\\" +
-            "DotnetDiff.TestProject3.csproj\"", "true", new string[0])]
+            "DotnetDiff.TestProject3.csproj\"", "\"TestFolder\"", "true", new string[0])]
         [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject1\\DotnetDiff.TestProject1.csproj, DotnetDiff.TestProject2\\" +
             "DotnetDiff.TestProject2.csproj, DotnetDiff.TestProject3\\DotnetDiff.TestProject3." +
-            "csproj\"", "true", new string[0])]
-        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject123.csproj\"", "false", new string[0])]
-        public virtual void BuildDotNETCoreProjectFile(string projectFiles, string result, string[] exampleTags)
+            "csproj\"", "\"TestFolder\"", "true", new string[0])]
+        [Xunit.InlineDataAttribute("\"DotnetDiff.TestProject2\\DotnetDiff.TestProject123.csproj\"", "\"TestFolder\"", "false", new string[0])]
+        public virtual void BuildDotNETCoreProjectFile(string projectFiles, string outputFolder, string result, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ProjectBuilder"};
@@ -108,6 +108,7 @@ namespace DotnetDiff.Specs.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("projectFiles", projectFiles);
+            argumentsOfScenario.Add("outputFolder", outputFolder);
             argumentsOfScenario.Add("result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Build dot NET Core project file", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -134,10 +135,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("the {0}", projectFiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("builder builds projects", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("builder builds projects to {0}", outputFolder), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.Then(string.Format("result should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+ testRunner.And(string.Format("output files are exist shoukd be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

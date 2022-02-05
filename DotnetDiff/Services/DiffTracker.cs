@@ -27,7 +27,7 @@ namespace DotnetDiff.Services
         {
             var changedFiles = await versionControlSystem.GetChangedFilesAsync(string.Empty, string.Empty);
             var changedProjects = await projectSearcher.GetChangedProjectsAsync(changedFiles);
-            var result = await projectsBuilder.BuildAsync(changedProjects);
+            var result = await projectsBuilder.BuildAsync(changedProjects, string.Empty);
         }
     }
 }
