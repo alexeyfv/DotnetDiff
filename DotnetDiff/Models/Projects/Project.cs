@@ -6,8 +6,8 @@
     public abstract class Project
     {
         /// <summary>
-        /// A path to the project file
-        /// </summary>
+        /// A project file info
+        ///</summary>
         public FileInfo? FileInfo { get; set; }
 
         public override bool Equals(object? obj) => Equals((obj as Project)!);

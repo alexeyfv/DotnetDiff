@@ -3,7 +3,11 @@ using DotnetDiff.Models.SourceCodeFiles;
 
 namespace DotnetDiff.Services.ProjectSearchers
 {
-    public abstract class ProjectsSearcher<T> : IProjectsSearcher<T> where T : Project, new()
+    /// <summary>
+    /// A base class that implements project searching
+    /// </summary>
+    /// <typeparam name="T">Project type</typeparam>
+    public abstract class ProjectsSearcher<T> where T : Project, new()
     {
         /// <summary>
         /// Project file extension
@@ -15,6 +19,11 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// </summary>
         public DirectoryInfo RepositoryDirectory { get; }
 
+        /// <summary>
+        /// Initialize project searching instance
+        /// </summary>
+        /// <param name="repositoryDirectory">Repository directory</param>
+        /// <exception cref="ArgumentException"></exception>
         public ProjectsSearcher(string repositoryDirectory)
         {
             if (string.IsNullOrEmpty(repositoryDirectory))

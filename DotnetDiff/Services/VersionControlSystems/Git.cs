@@ -4,16 +4,24 @@ using LibGit2Sharp;
 
 namespace DotnetDiff.Services.VersionControlSystems
 {
-    public class Git : IVersionControlSystem
+    /// <summary>
+    /// Git
+    /// </summary>
+    public class Git : VersionControlSystem
     {
         private readonly Repository repository;
 
+        /// <summary>
+        /// Initialize Git repository
+        /// </summary>
+        /// <param name="repository">Git repo</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public Git(Repository repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public IEnumerable<SourceCodeFile> GetChangedFiles(string firstCommitSha, string lastCommitSha)
+        public override IEnumerable<SourceCodeFile> GetChangedFiles(string firstCommitSha, string lastCommitSha)
         {
             var list = new List<SourceCodeFile>();
 

@@ -3,25 +3,35 @@ using System.Diagnostics;
 
 namespace DotnetDiff.Services.ProjectBuilders
 {
-    public abstract class ProjectBuilder<T> : IProjectsBuilder<T> where T : Project, new()
+    /// <summary>
+    /// A base class that implements project bulding
+    /// </summary>
+    /// <typeparam name="T">Project type</typeparam>
+    public abstract class ProjectBuilder<T> where T : Project, new()
     {
         private bool buildingIsSuccess;
 
         /// <summary>
-        /// 
+        /// This action is invoked when the builder returns any data from the standart output
         /// </summary>
         public Action<string>? DataReceived;
 
         /// <summary>
-        /// 
+        /// A path to the builder
         /// </summary>
         public string BuilderPath { get; protected set; }
 
         /// <summary>
-        /// 
+        /// The build command that used by the builder
         /// </summary>
         public string BuildingCommand { get; protected set; }
 
+        /// <summary>
+        /// Initialize project builder instance
+        /// </summary>
+        /// <param name="builderPath">A path to the builder</param>
+        /// <param name="buildingCommand">The build command that used by the builder</param>
+        /// <exception cref="ArgumentException"></exception>
         public ProjectBuilder(string builderPath, string buildingCommand)
         {
             if (string.IsNullOrEmpty(builderPath))

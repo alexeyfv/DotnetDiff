@@ -2,8 +2,15 @@
 
 namespace DotnetDiff.Services.ProjectSearchers
 {
+    /// <summary>
+    /// .NET Core project searcher
+    /// </summary>
     public class DotNetCoreProjectSearcher : ProjectsSearcher<DotNetCoreProject>
     {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="repositoryDirectory">Repository directory</param>
         public DotNetCoreProjectSearcher(string repositoryDirectory) : base(repositoryDirectory)
         {
             ProjectExtension = ".csproj";

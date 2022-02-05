@@ -5,7 +5,7 @@ using DotnetDiff.Services.VersionControlSystems;
 
 namespace DotnetDiff.Services
 {
-    class DiffTracker<T>: IDiffTracker where T : Project
+    public abstract class DiffTracker<T> where T : Project
     {
         private readonly IVersionControlSystem versionControlSystem;
 
