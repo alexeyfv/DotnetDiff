@@ -31,7 +31,7 @@ namespace DotnetDiff.Specs.StepDefinitions
         [When(@"Git returns changed file")]
         public void WhenGitReturnsChangedFiles()
         {
-            actualSourceCodeFiles = git.GetChangedFiles(firstCommit, lastCommit);
+            actualSourceCodeFiles = git.GetChangedFilesAsync(firstCommit, lastCommit).Result;
         }
 
         [Then(@"the file should be ""([^""]*)""")]

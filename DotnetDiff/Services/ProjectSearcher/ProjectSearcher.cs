@@ -39,13 +39,14 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// </summary>
         /// <param name="sourceCodeFiles">Collection of source code files</param>
         /// <returns>Collection of changed projects</returns>
-        public virtual IEnumerable<T> GetChangedProjects(IEnumerable<SourceCodeFile> sourceCodeFiles)
+        public virtual async Task<IEnumerable<T>> GetChangedProjectsAsync(IEnumerable<SourceCodeFile> sourceCodeFiles)
         {
             var projects = new List<T>();
 
             foreach (var sourceCodeFile in sourceCodeFiles)
             {
-                projects.Add(SearchProject(sourceCodeFile));
+                var project = await SearchProjectAsync(sourceCodeFile);
+                projects.Add(project);
             }
 
             return projects.Distinct();
@@ -57,7 +58,7 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// <param name="sourceCodeFile">Source code file</param>
         /// <returns>Project for provided source code file</returns>
         /// <exception cref="FileNotFoundException">Exception will throw if project will not be found</exception>
-        protected virtual T SearchProject(SourceCodeFile sourceCodeFile)
+        protected virtual async Task<T> SearchProjectAsync(SourceCodeFile sourceCodeFile) => await Task.Run(async () =>
         {
             // Search algorythm
             // 1. Check directory
@@ -83,7 +84,7 @@ namespace DotnetDiff.Services.ProjectSearchers
                 isRepositoryDirectory = directory == RepositoryDirectory;
 
                 // Step 1. Scan directory for project file
-                var project = ScanDirectory(directory);
+                var project = await ScanDirectoryAsync(directory);
 
                 // Step 2. If project is present then return it
                 if (project is not null)
@@ -104,14 +105,14 @@ namespace DotnetDiff.Services.ProjectSearchers
             while (!isRepositoryDirectory);
 
             throw new FileNotFoundException("Unable to find project file");
-        }
+        });
 
         /// <summary>
         /// Scans provided directory for project files
         /// </summary>
         /// <param name="directory">Directory to scan</param>
         /// <returns>Instance of <see cref="T"/> or <see cref="null"/> if not found</returns>
-        protected virtual T? ScanDirectory(DirectoryInfo directory)
+        protected virtual async Task<T?> ScanDirectoryAsync(DirectoryInfo directory) => await Task.Run(() =>
         {
             foreach (var file in directory.GetFiles())
             {
@@ -122,6 +123,6 @@ namespace DotnetDiff.Services.ProjectSearchers
             }
 
             return null;
-        }
+        });
     }
 }

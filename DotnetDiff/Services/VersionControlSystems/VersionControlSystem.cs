@@ -11,6 +11,6 @@ namespace DotnetDiff.Services.VersionControlSystems
         /// <param name="firstCommitSha">SHA for the first commit</param>
         /// <param name="lastCommitSha">SHA for the last commit</param>
         /// <returns>Collection of source code files</returns>
-        public abstract IEnumerable<SourceCodeFile> GetChangedFiles(string firstCommitSha, string lastCommitSha);
+        public abstract Task<IEnumerable<SourceCodeFile>> GetChangedFilesAsync(string firstCommitSha, string lastCommitSha);
     }
 }

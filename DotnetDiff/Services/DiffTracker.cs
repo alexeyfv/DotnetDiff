@@ -25,9 +25,9 @@ namespace DotnetDiff.Services
 
         public virtual async void Rebuild()
         {
-            var changedFiles = versionControlSystem.GetChangedFiles(string.Empty, string.Empty);
-            var changedProjects = projectSearcher.GetChangedProjects(changedFiles);
-            await projectsBuilder.BuildAsync(changedProjects);
+            var changedFiles = await versionControlSystem.GetChangedFilesAsync(string.Empty, string.Empty);
+            var changedProjects = await projectSearcher.GetChangedProjectsAsync(changedFiles);
+            var result = await projectsBuilder.BuildAsync(changedProjects);
         }
     }
 }

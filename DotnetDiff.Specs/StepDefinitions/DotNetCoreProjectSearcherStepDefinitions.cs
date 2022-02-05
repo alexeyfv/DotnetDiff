@@ -23,7 +23,7 @@ namespace DotnetDiff.Specs.StepDefinitions
         [When(@"searcher returns project")]
         public void WhenSearcherReturnsProject()
         {
-            actualProjects = dotNetCoreProjectSearcher.GetChangedProjects(sourceCodeFiles);
+            actualProjects = dotNetCoreProjectSearcher.GetChangedProjectsAsync(sourceCodeFiles).Result;
         }
 
         [Then(@"the projects should be ""([^""]*)""")]

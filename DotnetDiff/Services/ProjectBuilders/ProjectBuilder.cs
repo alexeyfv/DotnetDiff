@@ -56,6 +56,11 @@ namespace DotnetDiff.Services.ProjectBuilders
         /// <returns>Building arguments string</returns>
         public abstract string GetBuildingArguments(string buildingCommand, string projectFilePath);
 
+        /// <summary>
+        /// Starts async building
+        /// </summary>
+        /// <param name="projects">Collection of projects to build</param>
+        /// <returns>A task that returns true, if all the projects were builded successfully</returns>
         public virtual async Task<bool> BuildAsync(IEnumerable<Project> projects)
         {
             buildingIsSuccess = true;

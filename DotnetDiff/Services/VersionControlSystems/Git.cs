@@ -21,7 +21,7 @@ namespace DotnetDiff.Services.VersionControlSystems
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public override IEnumerable<SourceCodeFile> GetChangedFiles(string firstCommitSha, string lastCommitSha)
+        public override async Task<IEnumerable<SourceCodeFile>> GetChangedFilesAsync(string firstCommitSha, string lastCommitSha) => await Task.Run(() =>
         {
             var list = new List<SourceCodeFile>();
 
@@ -41,6 +41,6 @@ namespace DotnetDiff.Services.VersionControlSystems
             list.AddRange(treeChanges.Renamed.Select(e => new SourceCodeFile(e.Path)));
 
             return list;
-        }
+        });
     }
 }
