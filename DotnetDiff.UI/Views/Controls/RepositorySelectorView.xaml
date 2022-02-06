@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="DotnetDiff.UI.Views.Controls.RepositorySelectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:a="clr-namespace:AdonisUI;assembly=AdonisUI"
+             xmlns:ae="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+             xmlns:app="clr-namespace:DotnetDiff.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:m="clr-namespace:DotnetDiff.Models.Commits;assembly=DotnetDiff"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DotnetDiff.UI.ViewModels.Controls"
+             d:Width="600"
+             Background="{DynamicResource {x:Static a:Brushes.Layer0BackgroundBrush}}"
+             DataContext="{x:Static app:App.RepositorySelectorViewModel}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CommitDataTemplate"
+                      DataType="{x:Type m:Commit}">
+            <StackPanel>
+                <TextBlock FontSize="14"
+                           FontWeight="Medium"
+                           Text="{Binding Message}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,4,4,4"
+                               FontSize="12"
+                               Text="{Binding Author}" />
+                    <TextBlock Margin="4"
+                               FontSize="12"
+                               Text="{Binding Timestamp}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <Grid Grid.Row="0"
+                  Margin="{StaticResource VerticalMargin}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         ae:CornerRadiusExtension.CornerRadius="3,0,0,3"
+                         ae:WatermarkExtension.Watermark="{StaticResource SelectGitRepo}"
+                         Text="{Binding RepositoryDirectory, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Grid.Column="1"
+                        ae:CornerRadiusExtension.CornerRadius="0,3,3,0"
+                        Command="{Binding ReadCommitsCommand}"
+                        Content="{StaticResource ReadCommits}" />
+            </Grid>
+            <Grid Margin="{StaticResource VerticalMargin}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Margin="{StaticResource HeaderMargin}"
+                               FontSize="18"
+                               Text="{StaticResource CommitFrom}" />
+                    <GroupBox Margin="0,0,4,0">
+                        <ListBox Height="200"
+                                 ItemTemplate="{StaticResource CommitDataTemplate}"
+                                 ItemsSource="{Binding CommitsFrom}"
+                                 SelectedItem="{Binding SelectedCommitFrom}"
+                                 SelectionMode="Single" />
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Margin="{StaticResource HeaderMargin}"
+                               FontSize="18"
+                               Text="{StaticResource CommitTo}" />
+                    <GroupBox Margin="4,0,0,0">
+                        <ListBox Height="200"
+                                 ItemTemplate="{StaticResource CommitDataTemplate}"
+                                 ItemsSource="{Binding CommitsTo}"
+                                 SelectedItem="{Binding SelectedCommitTo}"
+                                 SelectionMode="Single" />
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+            <Button Margin="{StaticResource VerticalMargin}"
+                    ae:CornerRadiusExtension.CornerRadius="3"
+                    Command="{Binding GetChangedFilesCommand}"
+                    Content="{StaticResource GetChangedProjects}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

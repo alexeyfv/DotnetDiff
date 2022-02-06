@@ -18,8 +18,7 @@ namespace DotnetDiff.Specs.StepDefinitions
 
         public GitStepDefinitions()
         {
-            var repository = new Repository(Resources.GitRepository);
-            git = new Git(repository);
+            git = new Git(Resources.GitRepository);
         }
 
         [Given(@"the first commit is ""([^""]*)""")]

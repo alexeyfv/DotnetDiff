@@ -1,4 +1,5 @@
-﻿using DotnetDiff.Models.Projects;
+﻿using DotnetDiff.Models.Commits;
+using DotnetDiff.Models.Projects;
 using DotnetDiff.Services.ProjectBuilders;
 using DotnetDiff.Services.ProjectSearchers;
 using DotnetDiff.Services.VersionControlSystems;
@@ -7,14 +8,14 @@ namespace DotnetDiff.Services
 {
     public abstract class DiffTracker<T> where T : Project, new()
     {
-        private readonly VersionControlSystem versionControlSystem;
+        private readonly VersionControlSystem<GitCommit> versionControlSystem;
 
         private readonly ProjectSearcher<T> projectSearcher;
 
         private readonly ProjectBuilder<T> projectsBuilder;
 
         public DiffTracker(
-            VersionControlSystem versionControlSystem,
+            VersionControlSystem<GitCommit> versionControlSystem,
             ProjectSearcher<T> searcher,
             ProjectBuilder<T> projectsBuilder)
         {

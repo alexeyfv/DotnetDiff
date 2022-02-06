@@ -7,23 +7,14 @@ namespace DotnetDiff.Services.ProjectBuilders
     /// A base class that implements project bulding
     /// </summary>
     /// <typeparam name="T">Project type</typeparam>
-    public abstract class ProjectBuilder<T> where T : Project, new()
+    public abstract class ProjectBuilder<T> : IProjectBuilder where T : Project, new()
     {
         private bool buildingIsSuccess;
 
-        /// <summary>
-        /// This action is invoked when the builder returns any data from the standart output
-        /// </summary>
-        public Action<string>? DataReceived;
+        public Action<string>? DataReceived { get; set; }
 
-        /// <summary>
-        /// A path to the builder
-        /// </summary>
         public string BuilderPath { get; protected set; }
 
-        /// <summary>
-        /// The build command that used by the builder
-        /// </summary>
         public string BuildingCommand { get; protected set; }
 
         /// <summary>
@@ -55,14 +46,8 @@ namespace DotnetDiff.Services.ProjectBuilders
         /// <param name="projectFilePath">Project file path</param>
         /// <param name="outputFolder">Output folder</param>
         /// <returns>Building arguments string</returns>
-        public abstract string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder);
+        protected abstract string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder);
 
-        /// <summary>
-        /// Starts async building
-        /// </summary>
-        /// <param name="projects">Collection of projects to build</param>
-        /// <param name="outputFolder">Output folder</param>
-        /// <returns>A task that returns true, if all the projects were builded successfully</returns>
         public virtual async Task<bool> BuildAsync(IEnumerable<Project> projects, string outputFolder)
         {
             buildingIsSuccess = true;

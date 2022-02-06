@@ -16,7 +16,7 @@ namespace DotnetDiff.Services.ProjectBuilders
         {
         }
 
-        public override string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder) => 
+        protected override string GetBuildingArguments(string buildingCommand, string projectFilePath, string outputFolder) => 
             $"{buildingCommand} {projectFilePath} --output {outputFolder}";
     }
 }

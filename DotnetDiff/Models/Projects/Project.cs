@@ -10,6 +10,10 @@
         ///</summary>
         public FileInfo? FileInfo { get; set; }
 
+        public string Path => FileInfo?.FullName ?? string.Empty;
+
+        public string Name => FileInfo?.Name ?? string.Empty;
+
         public override bool Equals(object? obj) => Equals((obj as Project)!);
 
         public virtual bool Equals(Project obj)
@@ -31,5 +35,7 @@
         {
             return FileInfo == null ? 0 : FileInfo.FullName.GetHashCode();
         }
+
+        public override string ToString() => Path;
     }
 }

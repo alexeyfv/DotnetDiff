@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="SelectGitRepo">Git repo directory</s:String>
+    <s:String x:Key="ReadCommits">Read commits</s:String>
+    <s:String x:Key="ThreeDots">...</s:String>
+    <s:String x:Key="CommitFrom">From</s:String>
+    <s:String x:Key="CommitTo">To</s:String>
+    <s:String x:Key="GetChangedProjects">Get changed projects</s:String>
+    <s:String x:Key="ChangedProjects">Changed projects</s:String>
+    <s:String x:Key="OutputDirectory">Output directory</s:String>
+    <s:String x:Key="Build">Build</s:String>
+    <s:String x:Key="BuildLog">Build log</s:String>
+</ResourceDictionary>

@@ -7,26 +7,15 @@ namespace DotnetDiff.Services.ProjectSearchers
     /// A base class that implements project searching
     /// </summary>
     /// <typeparam name="T">Project type</typeparam>
-    public abstract class ProjectSearcher<T> where T : Project, new()
+    public abstract class ProjectSearcher<T> : IProjectSearcher where T : Project, new()
     {
-        /// <summary>
-        /// Project file extension
-        /// </summary>
         public abstract string ProjectExtension { get; protected set; }
 
-        /// <summary>
-        /// Repository directory info
-        /// </summary>
-        public DirectoryInfo RepositoryDirectory { get; }
+        public DirectoryInfo? RepositoryDirectory { get; protected set; }
 
-        /// <summary>
-        /// Initialize project searching instance
-        /// </summary>
-        /// <param name="repositoryDirectory">Repository directory</param>
-        /// <exception cref="ArgumentException"></exception>
-        public ProjectSearcher(string repositoryDirectory)
+        public void UpdateRepository(string repositoryDirectory)
         {
-            if (string.IsNullOrEmpty(repositoryDirectory))
+            if (string.IsNullOrEmpty(repositoryDirectory) || string.IsNullOrWhiteSpace(repositoryDirectory))
             {
                 throw new ArgumentException($"'{nameof(repositoryDirectory)}' cannot be null or empty.", nameof(repositoryDirectory));
             }
@@ -34,12 +23,7 @@ namespace DotnetDiff.Services.ProjectSearchers
             RepositoryDirectory = new DirectoryInfo(repositoryDirectory);
         }
 
-        /// <summary>
-        /// Returns collection of changed projects for provided source code files
-        /// </summary>
-        /// <param name="sourceCodeFiles">Collection of source code files</param>
-        /// <returns>Collection of changed projects</returns>
-        public virtual async Task<IEnumerable<T>> GetChangedProjectsAsync(IEnumerable<SourceCodeFile> sourceCodeFiles)
+        public virtual async Task<IEnumerable<Project>> GetChangedProjectsAsync(IEnumerable<SourceCodeFile> sourceCodeFiles)
         {
             var projects = new List<T>();
 
@@ -67,7 +51,7 @@ namespace DotnetDiff.Services.ProjectSearchers
             // 4. Repeat step 1 - 3 until reaching root repo directory
 
             // Get current directory for the source code file
-            var fileInfo = new FileInfo(@$"{RepositoryDirectory.FullName}\{sourceCodeFile.Path}");
+            var fileInfo = new FileInfo(@$"{RepositoryDirectory?.FullName}\{sourceCodeFile.Path}");
             var directory = fileInfo?.Directory;
 
             // Flag for searching until reaching repo root directory

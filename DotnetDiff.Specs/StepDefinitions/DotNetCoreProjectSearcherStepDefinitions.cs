@@ -12,7 +12,7 @@ namespace DotnetDiff.Specs.StepDefinitions
 
         private IEnumerable<Project> actualProjects = Enumerable.Empty<Project>();
 
-        private readonly DotNetCoreProjectSearcher dotNetCoreProjectSearcher = new(Resources.GitRepository);
+        private readonly DotNetCoreProjectSearcher dotNetCoreProjectSearcher = new();
 
         [Given(@"the ""([^""]*)""")]
         public void GivenThe(string sourceFiles)
@@ -23,6 +23,7 @@ namespace DotnetDiff.Specs.StepDefinitions
         [When(@"searcher returns project")]
         public void WhenSearcherReturnsProject()
         {
+            dotNetCoreProjectSearcher.UpdateRepository(Resources.GitRepository);
             actualProjects = dotNetCoreProjectSearcher.GetChangedProjectsAsync(sourceCodeFiles).Result;
         }
 
