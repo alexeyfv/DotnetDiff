@@ -16,6 +16,7 @@
                  IconVisibility="Collapsed"
                  ResizeMode="NoResize"
                  SizeToContent="Height"
+                 WindowStartupLocation="CenterScreen"
                  mc:Ignorable="d">
     <Window.Style>
         <Style BasedOn="{StaticResource {x:Type Window}}"
