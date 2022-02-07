@@ -49,7 +49,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         public MvxCommand ReadCommitsCommand => readCommitsCommand ??= new MvxCommand(ReadCommits, CanExecuteReadCommits);
 
-        public MvxAsyncCommand GetChangedFilesCommand => getChangedFilesCommand ??= new MvxAsyncCommand(GetChangedFiles, CanExecuteGetChangedFiles);
+        public MvxAsyncCommand GetChangedFilesCommand => getChangedFilesCommand ??= new MvxAsyncCommand(GetChangedFiles, CanExecuteGetChangedFiles, allowConcurrentExecutions: true);
 
         public IEnumerable<SourceCodeFile> SourceCodeFiles { get => sourceCodeFiles; set => SetProperty(ref sourceCodeFiles, value); }
 

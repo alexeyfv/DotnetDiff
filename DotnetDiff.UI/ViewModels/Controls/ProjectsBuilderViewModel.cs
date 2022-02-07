@@ -70,7 +70,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         public string Output { get => output; set => SetProperty(ref output, value); }
 
-        public MvxAsyncCommand BuildAsyncCommand => buildAsyncCommand ??= new MvxAsyncCommand(BuildAsync, CanExecuteBuildAsync);
+        public MvxAsyncCommand BuildAsyncCommand => buildAsyncCommand ??= new MvxAsyncCommand(BuildAsync, CanExecuteBuildAsync, allowConcurrentExecutions: true);
 
         public ProjectsBuilderViewModel(
             IProjectSearcher projectSearcher,
