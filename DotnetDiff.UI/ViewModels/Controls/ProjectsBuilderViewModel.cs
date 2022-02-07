@@ -11,6 +11,7 @@ using System.IO;
 using DotnetDiff.Services.ProjectSearchers;
 using DotnetDiff.Services.ProjectBuilders;
 using DotnetDiff.UI.ViewModels.MediatR.Notifications;
+using AdonisUI.Controls;
 
 namespace DotnetDiff.UI.ViewModels.Controls
 {
@@ -31,7 +32,15 @@ namespace DotnetDiff.UI.ViewModels.Controls
         public async Task ReceiveNotification(RepositoryInfoNotification repositoryInfoNotification)
         {
             projectSearcher.UpdateRepository(repositoryInfoNotification.RepositoryDirectory);
-            ChangedProjects = await projectSearcher.GetChangedProjectsAsync(repositoryInfoNotification.SourceCodeFiles);
+
+            try
+            {
+                ChangedProjects = await projectSearcher.GetChangedProjectsAsync(repositoryInfoNotification.SourceCodeFiles);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
+            }
         }
 
         public IEnumerable<Project> ChangedProjects
@@ -75,7 +84,15 @@ namespace DotnetDiff.UI.ViewModels.Controls
         private async Task BuildAsync()
         {
             Output = string.Empty;
-            await projectBuilder.BuildAsync(ChangedProjects, OutputDirectory);
+
+            try
+            {
+                await projectBuilder.BuildAsync(ChangedProjects, OutputDirectory);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
+            }
         }
 
         private bool CanExecuteBuildAsync()

@@ -1,4 +1,5 @@
-﻿using DotnetDiff.Models.Commits;
+﻿using AdonisUI.Controls;
+using DotnetDiff.Models.Commits;
 using DotnetDiff.Models.SourceCodeFiles;
 using DotnetDiff.Services.VersionControlSystems;
 using DotnetDiff.UI.ViewModels.MediatR.Notifications;
@@ -92,7 +93,15 @@ namespace DotnetDiff.UI.ViewModels.Controls
                 return;
             }
 
-            CommitsFrom = git.GetCommits(0, 50);
+            try
+            {
+                CommitsFrom = git.GetCommits(0, 50);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
+            }
+
             CommitsTo = CommitsFrom.ToArray();
         }
 
@@ -103,7 +112,15 @@ namespace DotnetDiff.UI.ViewModels.Controls
                 return;
             }
 
-            SourceCodeFiles = await git.GetChangedFilesAsync(SelectedCommitFrom.Sha, SelectedCommitTo.Sha);
+            try
+            {
+                SourceCodeFiles = await git.GetChangedFilesAsync(SelectedCommitFrom.Sha, SelectedCommitTo.Sha);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
+            }
+
             await mediator.Publish(new RepositoryInfoNotification(RepositoryDirectory, SourceCodeFiles));
         }
 
