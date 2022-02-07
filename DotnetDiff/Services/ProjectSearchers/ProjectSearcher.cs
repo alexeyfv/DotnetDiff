@@ -30,6 +30,12 @@ namespace DotnetDiff.Services.ProjectSearchers
             foreach (var sourceCodeFile in sourceCodeFiles)
             {
                 var project = await SearchProjectAsync(sourceCodeFile);
+
+                if (project is null)
+                {
+                    continue;
+                }
+
                 projects.Add(project);
             }
 
@@ -42,7 +48,7 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// <param name="sourceCodeFile">Source code file</param>
         /// <returns>Project for provided source code file</returns>
         /// <exception cref="FileNotFoundException">Exception will throw if project will not be found</exception>
-        protected virtual async Task<T> SearchProjectAsync(SourceCodeFile sourceCodeFile) => await Task.Run(async () =>
+        protected virtual async Task<T?> SearchProjectAsync(SourceCodeFile sourceCodeFile) => await Task.Run(async () =>
         {
             // Search algorythm
             // 1. Check directory
@@ -88,7 +94,7 @@ namespace DotnetDiff.Services.ProjectSearchers
             }
             while (!isRepositoryDirectory);
 
-            throw new FileNotFoundException("Unable to find project file");
+            return null;
         });
 
         /// <summary>
