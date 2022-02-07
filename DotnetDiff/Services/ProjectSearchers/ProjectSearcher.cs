@@ -104,6 +104,11 @@ namespace DotnetDiff.Services.ProjectSearchers
         /// <returns>Instance of <see cref="T"/> or <see cref="null"/> if not found</returns>
         protected virtual async Task<T?> ScanDirectoryAsync(DirectoryInfo directory) => await Task.Run(() =>
         {
+            if (!directory.Exists)
+            {
+                return null;
+            }
+
             foreach (var file in directory.GetFiles())
             {
                 if (string.Equals(file.Extension, ProjectExtension, StringComparison.OrdinalIgnoreCase))
