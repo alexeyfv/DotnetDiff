@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetDiff.TestProject2", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetDiff.TestProject3", "DotnetDiff.TestProject3\DotnetDiff.TestProject3.csproj", "{83307525-789B-4E56-A5D7-0331E4E43706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetDiff.UI", "DotnetDiff.UI\DotnetDiff.UI.csproj", "{CBF0420D-7BFF-4CD1-94D3-1B0A5610DE5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetDiff.UI", "DotnetDiff.UI\DotnetDiff.UI.csproj", "{CBF0420D-7BFF-4CD1-94D3-1B0A5610DE5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69CFA25E-AA26-4E8E-A264-2297CD5C3C44}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
