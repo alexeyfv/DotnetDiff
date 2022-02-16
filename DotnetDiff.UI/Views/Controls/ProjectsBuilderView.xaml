@@ -34,6 +34,7 @@
                      ItemTemplate="{StaticResource ProjectDataTemplate}"
                      ItemsSource="{Binding ChangedProjects}" />
         </GroupBox>
+        <Button Content="{StaticResource Copy}" Command="{Binding CopyAsyncCommand}"/>
         <Grid Margin="{StaticResource VerticalMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

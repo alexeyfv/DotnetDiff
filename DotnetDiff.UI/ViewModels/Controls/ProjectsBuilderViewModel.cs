@@ -23,6 +23,8 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         private MvxAsyncCommand? buildAsyncCommand;
 
+        private MvxCommand? copyAsyncCommand;
+
         private string output = string.Empty;
 
         private readonly IProjectSearcher projectSearcher;
@@ -51,6 +53,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
                 {
                     RaisePropertyChanged(nameof(OutputDirectoryIsEnabled));
                     BuildAsyncCommand.RaiseCanExecuteChanged();
+                    CopyAsyncCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -71,6 +74,8 @@ namespace DotnetDiff.UI.ViewModels.Controls
         public string Output { get => output; set => SetProperty(ref output, value); }
 
         public MvxAsyncCommand BuildAsyncCommand => buildAsyncCommand ??= new MvxAsyncCommand(BuildAsync, CanExecuteBuildAsync, allowConcurrentExecutions: true);
+
+        public MvxCommand CopyAsyncCommand => copyAsyncCommand ??= new MvxCommand(CopyAsync, CanExecuteCopyAsync);
 
         public ProjectsBuilderViewModel(
             IProjectSearcher projectSearcher,
@@ -106,5 +111,12 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
             return true;
         }
+
+        private void CopyAsync()
+        {
+            System.Windows.Clipboard.SetText(string.Join("\n", ChangedProjects.Select(p => p.Name)));
+        }
+
+        private bool CanExecuteCopyAsync() => ChangedProjects.Any();
     }
 }
