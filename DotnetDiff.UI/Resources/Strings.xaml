@@ -11,4 +11,6 @@
     <s:String x:Key="OutputDirectory">Output directory</s:String>
     <s:String x:Key="Build">Build</s:String>
     <s:String x:Key="BuildLog">Build log</s:String>
+    <s:String x:Key="CommitsNumber">Commits number</s:String>
+    <s:String x:Key="Copy">Copy projects list</s:String>
 </ResourceDictionary>

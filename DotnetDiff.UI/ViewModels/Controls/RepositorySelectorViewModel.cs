@@ -30,17 +30,19 @@ namespace DotnetDiff.UI.ViewModels.Controls
         private GitCommit? selectedCommitFrom;
 
         private GitCommit? selectedCommitTo;
-        
+
         private Git? git;
 
         private readonly IMediator mediator;
 
+        private int commitsNumber;
+
         public string RepositoryDirectory
         {
-            get => repo; 
+            get => repo;
             set
             {
-               if (SetProperty(ref repo, value))
+                if (SetProperty(ref repo, value))
                 {
                     ReadCommitsCommand.RaiseCanExecuteChanged();
                 }
@@ -57,9 +59,11 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         public IEnumerable<GitCommit> CommitsTo { get => commitsTo; set => SetProperty(ref commitsTo, value); }
 
+        public int CommitsNumber { get => commitsNumber; set => SetProperty(ref commitsNumber, value); }
+
         public GitCommit? SelectedCommitFrom
         {
-            get => selectedCommitFrom; 
+            get => selectedCommitFrom;
             set
             {
                 if (SetProperty(ref selectedCommitFrom, value))
@@ -71,7 +75,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         public GitCommit? SelectedCommitTo
         {
-            get => selectedCommitTo; 
+            get => selectedCommitTo;
             set
             {
                 if (SetProperty(ref selectedCommitTo, value))
@@ -84,6 +88,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
         public RepositorySelectorViewModel(IMediator mediator)
         {
             this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            CommitsNumber = 100;
         }
 
         private void ReadCommits()
@@ -95,7 +100,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
             try
             {
-                CommitsFrom = git.GetCommits(0, 50);
+                CommitsFrom = git.GetCommits(0, CommitsNumber);
             }
             catch (Exception ex)
             {
@@ -126,7 +131,7 @@ namespace DotnetDiff.UI.ViewModels.Controls
 
         private bool CanExecuteReadCommits()
         {
-            if (string.IsNullOrEmpty(RepositoryDirectory) || 
+            if (string.IsNullOrEmpty(RepositoryDirectory) ||
                 string.IsNullOrWhiteSpace(RepositoryDirectory))
             {
                 return false;
@@ -144,9 +149,9 @@ namespace DotnetDiff.UI.ViewModels.Controls
             return true;
         }
 
-        private bool CanExecuteGetChangedFiles() => 
-            git is not null && 
-            SelectedCommitFrom is not null && 
+        private bool CanExecuteGetChangedFiles() =>
+            git is not null &&
+            SelectedCommitFrom is not null &&
             SelectedCommitTo is not null;
 
     }
